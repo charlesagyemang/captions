@@ -1,7 +1,7 @@
 import whisper
 import os
 
-# Load Whisper Model
+# Load Whisper Model (Choose 'base', 'medium', 'large-v2' based on accuracy vs speed)
 model = whisper.load_model("large-v2")
 
 def transcribe_audio(file_path: str) -> dict:
@@ -9,12 +9,12 @@ def transcribe_audio(file_path: str) -> dict:
     Transcribes audio and returns:
     - Full text
     - Detected language
-    - Word-level timestamps
+    - Timestamps
     - SRT file path
     """
     result = model.transcribe(file_path, word_timestamps=True)
 
-    # Extract text and segments
+    # Extract key details
     transcription = {
         "text": result["text"],
         "language": result["language"],
